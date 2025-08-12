@@ -25,7 +25,7 @@ class Status {
 		} catch (error) {
 			console.error("Error fetching server status:", error);
 			embed.setDescription("❌ Impossible to fetch server status.");
-			return interaction.reply({ embeds: [embed] });
+			return await interaction.reply({ embeds: [embed] });
 		}
 
 		try {
@@ -52,7 +52,7 @@ class Status {
 		} catch (error) {
 			console.error("Error fetching server options:", error);
 			embed.setDescription("❌ Impossible to fetch server status.");
-			return interaction.reply({ embeds: [embed] });
+			return await interaction.reply({ embeds: [embed] });
 		}
 
 		if (healthy) {
@@ -65,6 +65,6 @@ class Status {
 			);
 		}
 
-		interaction.reply({ embeds: [embed] });
+		await interaction.reply({ embeds: [embed] });
 	}
 }
