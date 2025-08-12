@@ -12,9 +12,7 @@ class Status {
 		let description = "";
 
 		try {
-			const healthCheck = (
-				(await satisfactoryClient.healthCheck()) as any
-			).data;
+			const healthCheck = await satisfactoryClient.healthCheck();
 			console.log("Health Check:", healthCheck);
 			if (healthCheck.health === "healthy") {
 				description = "The server is running smoothly (>10 tick/s)! ✅";

@@ -20,6 +20,6 @@
 		"@swc/core": "^1.13.3",
 		"discord.js": "^14.21.0",
 		"discordx": "^11.12.5",
-		"satisfactory.ts": "^0.1.0"
+		"satisfactory.ts": "^0.1.1"
 	}
 }

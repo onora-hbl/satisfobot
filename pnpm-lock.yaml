@@ -21,8 +21,8 @@ importers:
         specifier: ^11.12.5
         version: 11.12.5(discord.js@14.21.0)
       satisfactory.ts:
-        specifier: ^0.1.0
-        version: 0.1.0
+        specifier: ^0.1.1
+        version: 0.1.1
     devDependencies:
       '@types/node':
         specifier: ^24.2.1
@@ -737,8 +737,8 @@ packages:
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
 
-  satisfactory.ts@0.1.0:
-    resolution: {integrity: sha512-iIhjbJNKhqvn9FjJWzLHmUn5mBzlLxa+I1bWeu9a906+TYeyGwPnCsD1xX7rEpVjXIbIYElqpgABX7wE7Zu39Q==}
+  satisfactory.ts@0.1.1:
+    resolution: {integrity: sha512-y08e1c6N0J9R7/UfbpG0712AiMCqIDysf+zQm9BgtochzHcMwvfpeTPD/vVzRhsQmBd0N9/MkBITCcjHyK0DbQ==}
 
   shebang-command@2.0.0:
     resolution: {integrity: sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA==}
@@ -1468,7 +1468,7 @@ snapshots:
       '@rollup/rollup-win32-x64-msvc': 4.46.2
       fsevents: 2.3.3
 
-  satisfactory.ts@0.1.0: {}
+  satisfactory.ts@0.1.1: {}
 
   shebang-command@2.0.0:
     dependencies:
