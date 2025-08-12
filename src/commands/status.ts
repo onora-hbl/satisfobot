@@ -9,30 +9,62 @@ class Status {
 		description: "Get the status of the server",
 	})
 	async status(interaction: CommandInteraction, client: Client) {
-		let description = "";
-
-		try {
-			const healthCheck = await satisfactoryClient.healthCheck();
-			console.log("Health Check:", healthCheck);
-			if (healthCheck.health === "healthy") {
-				description = "The server is running smoothly (>10 tick/s)! ✅";
-			} else {
-				description =
-					"The server is experiencing latency issues (<=10 tick/s). ⚠️";
-			}
-		} catch (error) {
-			console.error("Error fetching server status:", error);
-			description = "The server is currently unreachable. ❌";
-		}
-
-		let embed = new EmbedBuilder();
+		const embed = new EmbedBuilder();
 		embed
 			.setAuthor({
 				name: "SastisfoBot",
 				iconURL: client.user?.avatarURL() || undefined,
 			})
-			.setTitle("**Server Status**")
-			.setDescription(description);
+			.setTitle("**Server Status**");
+
+		let healthy = false;
+
+		try {
+			const healthCheck = await satisfactoryClient.healthCheck();
+			healthy = healthCheck.health === "healthy";
+		} catch (error) {
+			console.error("Error fetching server status:", error);
+			embed.setDescription("❌ Impossible to fetch server status.");
+			return interaction.reply({ embeds: [embed] });
+		}
+
+		try {
+			const serverOptions = await satisfactoryClient.getServerOptions();
+			embed.addFields([
+				{
+					name: "**Server Options**",
+					value: `Auto Pause ${
+						serverOptions.serverOptions["FG.DSAutoPause"]
+							? "✅"
+							: "❌"
+					}\nAuto Save Interval: ${parseInt(
+						serverOptions.serverOptions["FG.AutosaveInterval"]
+					)}s\nSeasonal events: ${
+						serverOptions.serverOptions[
+							"FG.DisableSeasonalEvents"
+						] === "True"
+							? "❌"
+							: "✅"
+					}`,
+					inline: false,
+				},
+			]);
+		} catch (error) {
+			console.error("Error fetching server options:", error);
+			embed.setDescription("❌ Impossible to fetch server status.");
+			return interaction.reply({ embeds: [embed] });
+		}
+
+		if (healthy) {
+			embed.setDescription(
+				"✅ The server is running and healthy (>10 tick/s)."
+			);
+		} else {
+			embed.setDescription(
+				"⚠️ The server is running but not healthy (<10 tick/s)."
+			);
+		}
+
 		interaction.reply({ embeds: [embed] });
 	}
 }
